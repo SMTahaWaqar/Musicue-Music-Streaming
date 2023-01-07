@@ -186,7 +186,7 @@ const Login = () => {
                             
                             </div>
                             <div className='mt-5'>
-                                <button type='submit' className='w-full bg-green-500 py-3 text-center font-bold text-xl text-white'>SignUp</button>
+                                <button type='submit' className='w-full bg-green-500 py-3 text-center font-bold text-xl text-white hover:bg-green-700'>SignUp</button>
                             </div>
                         </form>
                         <p onClick={() => setIsLogin(true)} className="font-semibold hover:font-bold hover:cursor-pointer underline mt-2">Already have an account? Sign in here</p>
@@ -232,7 +232,7 @@ const Login = () => {
                             
                             </div>
                             <div className='mt-5'>
-                                <button type='submit' className='w-full bg-green-500 py-3 text-center font-bold text-xl text-white'>Login</button>
+                                <button type='submit' className='w-full bg-green-500 py-3 text-center font-bold text-xl text-white hover:bg-green-700'>Login</button>
                             </div>
                         </form>
                         <p onClick={() => setIsLogin(false)} className="font-semibold hover:font-bold hover:cursor-pointer underline mt-2">Don't have an account? Create one here!</p>
