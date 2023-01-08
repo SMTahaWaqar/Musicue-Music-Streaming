@@ -4,12 +4,12 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
-const Login = () => {
+const Login = (props) => {
 
     // const location = useLocation();
     // console.log(location.pathname);
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const [isLogin, setIsLogin] = useState(true);
 
@@ -68,11 +68,12 @@ const Login = () => {
     }
 
     const login = async (values) => {
-        console.log(values);
+        // console.log(values);
         try {
             const res = await axios.post('http://localhost:3001/auth/login', values)
-            console.log(res.data);
-            navigate('/home', {state: res.data});
+            // console.log(res.data);
+            // navigate('/home', {state: res.data});
+            props.sendData(res.data);
         } catch (error) {
             console.log(error);
         }
