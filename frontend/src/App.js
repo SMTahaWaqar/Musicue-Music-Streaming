@@ -16,7 +16,7 @@ function App() {
       localStorage.setItem('loggedIn', true);
     }
     else {
-      localStorage.setItem('loggedIn', true);
+      localStorage.setItem('loggedIn', false);
     }
   }
 

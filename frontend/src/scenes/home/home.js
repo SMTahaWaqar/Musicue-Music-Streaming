@@ -64,7 +64,7 @@ const Home = () => {
           {homeData ?
           <div className='flex flex-wrap items-centerz justify-center md:grid grid-cols-4 gap-4 items-stretch'>
             {homeData.songs.map((song) => (
-              <div class="flex justify-center m-4 w-full h-full">
+              <div class="flex justify-center m-4 w-full h-full z-[1]">
               <div class="rounded-lg shadow-lg bg-white max-w-sm">
                 <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
                   <img class="rounded-t-lg" src={song.image[2].link} alt="Song Cover"/>
@@ -87,7 +87,7 @@ const Home = () => {
             {homeData ?
             <div className='flex flex-wrap items-centerz justify-center md:grid grid-cols-4 gap-4 items-stretch'>
               {homeData.albums.map((album) => (
-                <div class="flex justify-center m-4 w-full h-full">
+                <div class="flex justify-center m-4 w-full h-full z-[1]">
                 <div class="rounded-lg shadow-lg bg-white max-w-sm">
                   <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
                     <img class="rounded-t-lg" src={album.image[2].link} alt="Song Cover"/>
