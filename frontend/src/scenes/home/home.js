@@ -116,32 +116,6 @@ const Home = () => {
     </div>
   )
 }
-
-  {/* <div>
-            Playing {currentSong}
-            <span>{isPlaying}</span>
-            {isPlaying ? */}
-            {/* <div className="player"> */}
-              {/* {isPlaying} */}
-              {/* <video id="player" controls>
-                <source src={isPlaying} type="video/mp4" />
-                <source src="video/sintel-short.webm" type="video/webm" /> */}
-                {/* <!-- fallback content here --> */}
-              {/* </video> */}
-              {/* <div className="controls">
-                <button className="play" data-icon="P" aria-label="play pause toggle"></button>
-                <button className="stop" data-icon="S" aria-label="stop"></button>
-                <div className="timer">
-                  <div></div>
-                  <span aria-label="timer">00:00</span>
-                </div>
-                <button className="rwd" data-icon="B" aria-label="rewind"></button>
-                <button className="fwd" data-icon="F" aria-label="fast forward"></button>
-              </div>
-            </div> */}
-            {/* : <div>Loading</div> */}
-            {/* } */}
-          {/* </div> */}
         
 
 export default Home;

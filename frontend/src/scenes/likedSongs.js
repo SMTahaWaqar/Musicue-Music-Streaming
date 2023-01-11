@@ -1,6 +1,9 @@
 import React from 'react'
+import { likedSongs } from '../data'
 
 const LikedSongs = () => {
+
+
   return (
     <div className='h-full bg-gray-100'>
         <div className='md:h-full items-center text-gray-600'>
@@ -10,6 +13,30 @@ const LikedSongs = () => {
                     <h1 className='text-4xl md:text-6xl text-gray-700 font-semibold'>Liked Songs</h1>
                 </div>
             </div>
+
+            <h4 className="text-xl md:text-lg text-indigo-700 mb-1">Trending Songs</h4>
+            {likedSongs ?
+                <div className='flex flex-wrap items-centerz justify-center md:grid grid-cols-4 gap-4 items-stretch'>
+                    {likedSongs.map((song) => (
+                    <div class="flex justify-center m-4 w-[80%] h-full z-[1]">
+                    <div class="rounded-lg shadow-lg bg-white max-w-sm">
+                        <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
+                        <img class="rounded-t-lg" src={song.image[2].link} alt="Song Cover"/>
+                        </a>
+                        <div class="p-6">
+                        <h5 class="text-gray-900 text-xl font-medium mb-2">{song.name}</h5>
+                        <p class="text-gray-700 text-base mb-4">
+                            {song.primaryArtists}
+                        </p>
+                        <button type="button" class=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Button</button>
+                        </div>
+                    </div>
+                    </div>
+                    ))}
+                </div>
+                : <div>Loading</div>
+            }
+
         </div>
     </div>
   )

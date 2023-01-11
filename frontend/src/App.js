@@ -5,6 +5,9 @@ import Navbar from './components/navbar';
 import { useState } from 'react';
 // import Search from './scenes/search';
 import LikedSongs from './scenes/likedSongs';
+import CustomPlaylist from './scenes/customPlaylist';
+import AboutUs from './scenes/aboutUs';
+import Player from './components/player';
 
 function App() {
 
@@ -34,9 +37,12 @@ function App() {
       <Login sendData={sendData}/> :
       <Router>
         <Navbar />
+        <Player />
         <Routes>
           <Route exact path="/" element={<Home />} /> 
           <Route exact path="/likedSongs" element={<LikedSongs />} /> 
+          <Route exact path="/customPlaylist" element={<CustomPlaylist />} /> 
+          <Route exact path="/aboutUs" element={<AboutUs />} /> 
           {/* <Route path="/search" element={<Search sendData={searchData}/>} /> */}
         </Routes>
     </Router>
