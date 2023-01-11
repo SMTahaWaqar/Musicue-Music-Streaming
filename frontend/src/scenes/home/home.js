@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import './home.css'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import {BsFillHeartFill} from 'react-icons/bs';
+import './home.css';
 
 const Home = () => {
 
@@ -36,7 +39,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    axios.get('https://saavn.me/modules?language=english,hindi')
+    axios.get('https://saavn.me/modules?language=english')
     .then(res => {
         console.log(res.data.data.trending.songs[0].name)
         setHomData(res.data.data.trending);
@@ -64,17 +67,21 @@ const Home = () => {
           {homeData ?
           <div className='flex flex-wrap items-centerz justify-center md:grid grid-cols-4 gap-4 items-stretch'>
             {homeData.songs.map((song) => (
-              <div class="flex justify-center m-4 w-full h-full z-[1]">
-              <div class="rounded-lg shadow-lg bg-white max-w-sm">
+              <div className="flex justify-center m-4 w-full h-full z-[1]">
+              <div className="rounded-lg shadow-lg bg-white max-w-sm">
                 <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
-                  <img class="rounded-t-lg" src={song.image[2].link} alt="Song Cover"/>
+                  <img className="rounded-t-lg" src={song.image[2].link} alt="Song Cover"/>
                 </a>
-                <div class="p-6">
-                  <h5 class="text-gray-900 text-xl font-medium mb-2">{song.name}</h5>
-                  <p class="text-gray-700 text-base mb-4">
+                <div className="p-6">
+                  <h5 className="text-gray-900 text-xl font-medium mb-2">{song.name}</h5>
+                  <p className="text-gray-700 text-base mb-4">
                     {song.primaryArtists[0].name}
                   </p>
-                  <button type="button" class=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Button</button>
+                  <div className='flex justify-between flex-col'>
+                    <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">Play</button>
+                    <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">Add to Playlist</button>
+                    <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110 flex items-center justify-center"><BsFillHeartFill /></button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -87,17 +94,21 @@ const Home = () => {
             {homeData ?
             <div className='flex flex-wrap items-centerz justify-center md:grid grid-cols-4 gap-4 items-stretch'>
               {homeData.albums.map((album) => (
-                <div class="flex justify-center m-4 w-full h-full z-[1]">
-                <div class="rounded-lg shadow-lg bg-white max-w-sm">
-                  <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
-                    <img class="rounded-t-lg" src={album.image[2].link} alt="Song Cover"/>
-                  </a>
-                  <div class="p-6">
-                    <h5 class="text-gray-900 text-xl font-medium mb-2">{album.name}</h5>
-                    <p class="text-gray-700 text-base mb-4">
+                <div className="flex justify-center m-4 w-full h-full z-[1]">
+                <div className="rounded-lg shadow-lg bg-white max-w-sm">
+                  <Link to="/album" state={album.name} data-mdb-ripple="true" data-mdb-ripple-color="light">
+                    <img className="rounded-t-lg" src={album.image[2].link} alt="Song Cover"/>
+                  </Link>
+                  <div className="p-6">
+                    <h5 className="text-gray-900 text-xl font-medium mb-2">{album.name}</h5>
+                    <p className="text-gray-700 text-base mb-4">
                       {album.artists[0].name}
                     </p>
-                    <button type="button" class=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Button</button>
+                    <div className='flex justify-between flex-col'>
+                      <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">Play</button>
+                      <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">Add to Playlist</button>
+                      <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">Liked Songs</button>
+                    </div>
                   </div>
                 </div>
               </div>

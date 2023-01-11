@@ -1,11 +1,26 @@
 import React, { useState } from 'react'
 import { FcMusic } from 'react-icons/fc'
 import {  AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Navbar = () => {
 
+    const navigate = useNavigate();
+
     const [search,setSearch] = useState("");
+
+    const [searchData, setSearchData] = useState();
+
+    const handleSearch = () => {
+    axios.get(`https://saavn.me/search/songs?query=${search}`)
+    .then(response => {
+      console.log(response);
+      setSearchData(response.data.data.results[0])
+      })
+    .catch(error => console.error(error))
+    navigate("/search", {state: searchData});
+    }
 
     let Links = [
         {name:"Home", link:"/"},
@@ -44,7 +59,7 @@ const Navbar = () => {
                             value={search}
                             onChange={(e)=>setSearch(e.target.value)}
                         />
-                        <button className="px-4 text-white bg-purple-600 rounded-full ">
+                        <button onClick={handleSearch} className="px-4 text-white bg-purple-600 rounded-full ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="w-5 h-5"

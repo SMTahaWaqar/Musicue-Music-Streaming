@@ -6,7 +6,7 @@ const Player = () => {
             {/* Playing {currentSong} */}
             {/* <span>{isPlaying}</span> */}
             {/* {isPlaying ? */}
-            <div className="player">
+            <div className="flex justify-center items-center pb-8">
               {/* {isPlaying} */}
               <video id="player" controls>
                 <source src="https://aac.saavncdn.com/292/3688f03d025658b1103cc8b854e1b3ed_320.mp4" type="video/mp4" />

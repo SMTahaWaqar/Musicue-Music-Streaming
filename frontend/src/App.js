@@ -3,11 +3,12 @@ import Login from './scenes/login';
 import Home from './scenes/home/home';
 import Navbar from './components/navbar';
 import { useState } from 'react';
-// import Search from './scenes/search';
 import LikedSongs from './scenes/likedSongs';
 import CustomPlaylist from './scenes/customPlaylist';
 import AboutUs from './scenes/aboutUs';
 import Player from './components/player';
+import Search from './scenes/search';
+import Album from './scenes/album';
 
 function App() {
 
@@ -43,7 +44,8 @@ function App() {
           <Route exact path="/likedSongs" element={<LikedSongs />} /> 
           <Route exact path="/customPlaylist" element={<CustomPlaylist />} /> 
           <Route exact path="/aboutUs" element={<AboutUs />} /> 
-          {/* <Route path="/search" element={<Search sendData={searchData}/>} /> */}
+          <Route exact path="/search" element={<Search />} /> 
+          <Route exact path="/album" element={<Album />} /> 
         </Routes>
     </Router>
   );
