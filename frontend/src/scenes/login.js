@@ -92,10 +92,10 @@ const Login = (props) => {
         <div className='container mx-auto'>
             <div className='w-8/12 bg-[#227C70] rounded-xl mx-auto shadow-lg overflow- flex flex-col lg:flex-row'>
                 {/* Image */}
-                <div className='w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center' style={{backgroundImage: "url('https://i.shgcdn.com/5a4e48c5-b162-4bc1-8f86-598f43554655/-/format/auto/-/preview/3000x3000/-/quality/lighter/')"}}>
-                    <h1 className='text-black text-3xl mb-3'>Welcome</h1>
+                <div className='w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center' style={{backgroundImage: "url('https://img.freepik.com/free-vector/musical-notes-frame-with-text-space_1017-32857.jpg?w=826&t=st=1673467941~exp=1673468541~hmac=7348b70b9982ef237a2292a45dd0240a0ce330389336b38d61be16778e203eeb')"}}>
+                    <h1 className='text-white text-center font-bold text-4xl mb-3'>Welcome To Musicue</h1>
                     <div>
-                        <p className='text-black'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, adipisci?Lorem, ipsum dolor sit amet consectetur adipisicing elit. At, asperiores!</p>
+                        <p className='text-white font-bold text-2xl text-center'>Musique gives you access to a world of free music, curated playlists, artists you love. <br /> Discover new music, top songs or listen to your favorite artists and albums.</p>
                     </div>
                 </div>
                 {/* Form */}

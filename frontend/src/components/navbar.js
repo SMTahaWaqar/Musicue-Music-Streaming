@@ -26,7 +26,7 @@ const Navbar = () => {
         {name:"Home", link:"/"},
         {name:"Liked Songs", link:"/likedSongs"},
         {name:"Custom Playlist", link:"/customPlaylist"},
-        {name:"About Us", link:"/"},
+        {name:"About Us", link:"/aboutUs"},
     ]
 
     const [open, setOpen] = useState(false)
@@ -88,7 +88,7 @@ const Navbar = () => {
                     ))
                 }
 
-                <button className='bg-indigo-600 text-white font-[Poppins] py-2 px-6 rounded md:ml-8 hover:bg-indigo-400 duration-500'>
+                <button className='bg-black text-white font-[Poppins] py-2 px-6 rounded md:ml-8 hover:bg-[#EA0C5C] duration-500 hover:scale-110'>
                     Profile
                 </button>
             </ul>
