@@ -39,7 +39,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    axios.get('https://saavn.me/modules?language=english')
+    axios.get('https://saavn.me/modules?language=english,hindi')
     .then(res => {
         console.log(res.data.data.trending.songs[0].name)
         setHomData(res.data.data.trending);
@@ -116,12 +116,6 @@ const Home = () => {
             </div>
           : <div>Loading</div>
           }
-
-          
-
-
-
-
         </div>
       </div>
     </div>
