@@ -9,6 +9,7 @@ import AboutUs from './scenes/aboutUs';
 import Player from './components/player';
 import Search from './scenes/search';
 import Album from './scenes/album';
+import Song from './scenes/song';
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
           <Route exact path="/aboutUs" element={<AboutUs />} /> 
           <Route exact path="/search" element={<Search />} /> 
           <Route exact path="/album" element={<Album />} /> 
+          <Route exact path="/song" element={<Song />} /> 
         </Routes>
     </Router>
   );

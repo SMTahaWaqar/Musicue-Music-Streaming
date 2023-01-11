@@ -69,9 +69,9 @@ const Home = () => {
             {homeData.songs.map((song) => (
               <div className="flex justify-center m-4 w-full h-full z-[1]">
               <div className="rounded-lg shadow-lg bg-white max-w-sm">
-                <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
+                <Link to="/song" state={song.name} data-mdb-ripple="true" data-mdb-ripple-color="light">
                   <img className="rounded-t-lg" src={song.image[2].link} alt="Song Cover"/>
-                </a>
+                </Link>
                 <div className="p-6">
                   <h5 className="text-gray-900 text-xl font-medium mb-2">{song.name}</h5>
                   <p className="text-gray-700 text-base mb-4">
