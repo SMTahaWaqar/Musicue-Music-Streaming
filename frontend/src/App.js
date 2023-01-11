@@ -3,10 +3,14 @@ import Login from './scenes/login';
 import Home from './scenes/home/home';
 import Navbar from './components/navbar';
 import { useState } from 'react';
+// import Search from './scenes/search';
+import LikedSongs from './scenes/likedSongs';
 
 function App() {
 
   const [loginToken, setLoginToken] = useState();
+
+  // const [searchHome, setSearchHome] = useState();
 
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -20,6 +24,10 @@ function App() {
     }
   }
 
+  // const searchData = (data) => {
+  //   setSearchHome(data);
+  // }
+
 
 
   return (!localStorage.getItem('loggedIn') ?
@@ -28,6 +36,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} /> 
+          <Route exact path="/likedSongs" element={<LikedSongs />} /> 
+          {/* <Route path="/search" element={<Search sendData={searchData}/>} /> */}
         </Routes>
     </Router>
   );
