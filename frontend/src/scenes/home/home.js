@@ -39,7 +39,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    axios.get('https://saavn.me/modules?language=english,hindi')
+    axios.get('https://saavn.me/modules?language=hindi')
     .then(res => {
         console.log(res.data.data.trending.songs[0].name)
         setHomData(res.data.data.trending);
@@ -55,26 +55,26 @@ const Home = () => {
   
 
   return (
-    <div className='h-full bg-gray-100'>
+    <div className='h-full bg-black'>
       <div className='md:h-full items-center text-gray-600'>
         <div className='container flex flex-col px-5 py-24 mx-auto'>
           <div className='text-center mb-12'>
-            <h5 className='text-base md:text-lg text-indigo-700 mb-1'>Trending For the day</h5>
-            <h1 className='text-4xl md:text-6xl text-gray-700 font-semibold'>Top Charts</h1>
+            <h5 className='text-base md:text-lg text-[#EA0C5C] mb-1'>Trending For the day</h5>
+            <h1 className='text-4xl md:text-6xl text-white font-semibold'>Top Charts</h1>
           </div>
 
-          <h4 className="text-xl md:text-lg text-indigo-700 mb-1">Trending Songs</h4>
+          <h4 className="text-xl md:text-lg text-[#EA0C5C] mb-1">Trending Songs</h4>
           {homeData ?
           <div className='flex flex-wrap items-centerz justify-center md:grid grid-cols-4 gap-4 items-stretch'>
             {homeData.songs.map((song) => (
               <div className="flex justify-center m-4 w-full h-full z-[1]">
-              <div className="rounded-lg shadow-lg bg-white max-w-sm">
+              <div className="rounded-lg shadow-lg bg-gray-700 max-w-sm">
                 <Link to="/song" state={song.name} data-mdb-ripple="true" data-mdb-ripple-color="light">
                   <img className="rounded-t-lg" src={song.image[2].link} alt="Song Cover"/>
                 </Link>
                 <div className="p-6">
-                  <h5 className="text-gray-900 text-xl font-medium mb-2">{song.name}</h5>
-                  <p className="text-gray-700 text-base mb-4">
+                  <h5 className="text-white text-xl font-medium mb-2">{song.name}</h5>
+                  <p className="text-white text-base mb-4">
                     {song.primaryArtists[0].name}
                   </p>
                   <div className='flex justify-between flex-col'>
@@ -90,18 +90,18 @@ const Home = () => {
           : <div>Loading</div>
           }
 
-          <h4 className="text-xl md:text-lg text-indigo-700 mt-20">Trending Albums</h4>
+          <h4 className="text-xl md:text-lg text-[#EA0C5C] mt-20">Trending Albums</h4>
             {homeData ?
             <div className='flex flex-wrap items-centerz justify-center md:grid grid-cols-4 gap-4 items-stretch'>
               {homeData.albums.map((album) => (
                 <div className="flex justify-center m-4 w-full h-full z-[1]">
-                <div className="rounded-lg shadow-lg bg-white max-w-sm">
+                <div className="rounded-lg shadow-lg bg-gray-700 max-w-sm">
                   <Link to="/album" state={album.name} data-mdb-ripple="true" data-mdb-ripple-color="light">
                     <img className="rounded-t-lg" src={album.image[2].link} alt="Song Cover"/>
                   </Link>
                   <div className="p-6">
-                    <h5 className="text-gray-900 text-xl font-medium mb-2">{album.name}</h5>
-                    <p className="text-gray-700 text-base mb-4">
+                    <h5 className="text-white text-xl font-medium mb-2">{album.name}</h5>
+                    <p className="text-white text-base mb-4">
                       {album.artists[0].name}
                     </p>
                     <div className='flex justify-between flex-col'>

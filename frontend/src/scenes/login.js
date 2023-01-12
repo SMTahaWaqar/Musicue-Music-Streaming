@@ -88,7 +88,7 @@ const Login = (props) => {
     // style={{backgroundImage: "linear-gradient(115deg, #9f7aea, #fee2fe", padding: "40px 0px"}}
 
   return (
-    <div className='min-h-screen flex justify-center items-center bg-[#023047]' >
+    <div className='min-h-screen flex justify-center items-center bg-[#395B64]' >
         <div className='container mx-auto'>
             <div className='w-8/12 bg-[#227C70] rounded-xl mx-auto shadow-lg overflow- flex flex-col lg:flex-row'>
                 {/* Image */}
@@ -114,7 +114,7 @@ const Login = (props) => {
                                 onBlur={formik.handleBlur}
                                 value={formik.values.firstName} 
                                 placeholder='First Name' 
-                                className='border bg-[#4d70bd] font-semibold border-gray-400 py-1 px-2 hover:bg-white hover:cursor-pointer  disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500'
+                                className='border font-semibold border-gray-400 py-1 px-2 hover:bg-white hover:cursor-pointer  disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500'
                                 />
                                 {formik.touched.firstName && formik.errors.firstName ? (
                                     <p className='text-sm text-red-500'>{formik.errors.firstName}</p>
@@ -128,7 +128,7 @@ const Login = (props) => {
                                 onBlur={formik.handleBlur}
                                 value={formik.values.lastName} 
                                 placeholder='Last Name' 
-                                className='border bg-[#4d70bd] font-semibold  hover:bg-white border-gray-400 py-1 px-2 mt-5 lg:mt-0 hover:cursor-pointer'
+                                className='border font-semibold  hover:bg-white border-gray-400 py-1 px-2 mt-5 lg:mt-0 hover:cursor-pointer'
                                 />
                                 {formik.touched.lastName && formik.errors.lastName ? (
                                     <p className='text-sm text-red-500'>{formik.errors.lastName}</p>
@@ -145,7 +145,7 @@ const Login = (props) => {
                                 onBlur={formik.handleBlur}
                                 value={formik.values.email} 
                                 placeholder='Email' 
-                                className='border bg-[#4d70bd] font-semibold hover:bg-white border-gray-400 py-1 px-2 w-full hover:cursor-pointer'
+                                className='border font-semibold hover:bg-white border-gray-400 py-1 px-2 w-full hover:cursor-pointer'
                                 />
                                 {formik.touched.email && formik.errors.email ? (
                                     <p className='text-sm text-red-500'>{formik.errors.email}</p>
@@ -162,7 +162,7 @@ const Login = (props) => {
                                 onBlur={formik.handleBlur}
                                 value={formik.values.username} 
                                 placeholder='Username' 
-                                className='border bg-[#4d70bd] font-semibold hover:bg-white border-gray-400 py-1 px-2 w-full hover:cursor-pointer'
+                                className='border font-semibold hover:bg-white border-gray-400 py-1 px-2 w-full hover:cursor-pointer'
                                 />
                                 {formik.touched.username && formik.errors.username? (
                                     <p className='text-sm text-red-500'>{formik.errors.username}</p>
@@ -179,7 +179,7 @@ const Login = (props) => {
                                 onBlur={formik.handleBlur}
                                 value={formik.values.password} 
                                 placeholder='Password' 
-                                className='border bg-[#4d70bd] font-semibold hover:bg-white border-gray-400 py-1 px-2 w-full hover:cursor-pointer'
+                                className='border font-semibold hover:bg-white border-gray-400 py-1 px-2 w-full hover:cursor-pointer'
                                 />
                                 {formik.touched.password && formik.errors.password? (
                                     <p className='text-sm text-red-500'>{formik.errors.password}</p>
@@ -208,7 +208,7 @@ const Login = (props) => {
                                 onBlur={formik.handleBlur}
                                 value={formik.values.username} 
                                 placeholder='Username' 
-                                className='border bg-[#4d70bd] text-black font-semibold border-gray-400 py-1 px-2 w-full hover:bg-white hover:cursor-pointer'
+                                className='border text-black font-semibold border-gray-400 py-1 px-2 w-full hover:bg-white hover:cursor-pointer'
                                 />
                                 {formik.touched.username && formik.errors.username? (
                                     <p className='text-sm text-red-500'>{formik.errors.username}</p>
@@ -225,7 +225,7 @@ const Login = (props) => {
                                 onBlur={formik.handleBlur}
                                 value={formik.values.password} 
                                 placeholder='Password' 
-                                className='border bg-[#4d70bd] font-semibold border-gray-400 py-1 px-2 w-full hover:bg-white hover:cursor-pointer'
+                                className='border font-semibold border-gray-400 py-1 px-2 w-full hover:bg-white hover:cursor-pointer'
                                 />
                                 {formik.touched.password && formik.errors.password? (
                                     <p className='text-sm text-red-500'>{formik.errors.password}</p>

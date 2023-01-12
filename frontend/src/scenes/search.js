@@ -14,6 +14,7 @@ const Search = () => {
     axios.get(`https://saavn.me/search/all?query=${query}`)
     .then(res => {
       console.log(res.data.data);
+      setSearchData(res.data.data)
     })
     .catch(err => console.log(err))
   }

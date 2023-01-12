@@ -25,12 +25,12 @@ const Album = (props) => {
     
  
   return (
-    <div className='w-full flex flex-col justify-center items-center md:justify-start md:float-left'>
+    <div className='w-full flex flex-col justify-center items-center md:justify-start md:float-left bg-black'>
         {albumData ?
         <div className='flex flex-col justify-center items-center md:justify-start md:float-left m-4'>
             <div className='w-full text-center mb-12'>
-                <h5 className='text-base md:text-lg text-indigo-700 mb-1'>Album</h5>
-                <h1 className='text-4xl md:text-6xl text-gray-700 font-semibold '>{albumData.name}</h1>
+                <h5 className='text-base md:text-lg text-[#EA0C5C] mb-1'>Album</h5>
+                <h1 className='text-4xl md:text-6xl text-white font-semibold '>{albumData.name}</h1>
             </div>
             <div className='flex justify-center items-center'>
                 <img className='h-full w-full' src={albumData.image[2].link} alt="Album Cover" />
@@ -38,14 +38,14 @@ const Album = (props) => {
             {/* {albumData.primaryArtists.map((artist) => { */}
             <hr />
             <div className='float-left mt-10'>
-                <h4 className='text-xl md:text-4xl '>Featured Artists</h4>
-                <h3 className='text-center m-2 bg-cyan-500 rounded-xl p-3'>Artist 1</h3>
-                <h3 className='text-center m-2 bg-cyan-500 rounded-xl p-3'>Artist 2</h3>
-                <h3 className='text-center m-2 bg-cyan-500 rounded-xl p-3'>Artist 3</h3>
+            <h4 className='text-xl md:text-4xl text-white'>Featured Artists</h4>
+                <h3 className='text-center m-2 bg-[#EA0C50] rounded-xl p-3 text-white'>Artist 1</h3>
+                <h3 className='text-center m-2 bg-[#EA0C50] rounded-xl p-3 text-white'>Artist 2</h3>
+                <h3 className='text-center m-2 bg-[#EA0C50] rounded-xl p-3 text-white'>Artist 3</h3>
             </div>
             {/* })} */}
-            <h4 className='text-xl font-semibold'>Lanuguage : {albumData.language}</h4>
-            {albumData.playCount === "" ? <h4 className='text-xl font-semibold'>PlayCount : Not Available</h4> : <h4 className='text-xl font-semibold'>PlayCount : {albumData.playCount}</h4> }
+            <h4 className='text-xl font-semibold text-white'>Lanuguage : {albumData.language}</h4>
+            {albumData.playCount === "" ? <h4 className='text-xl font-semibold text-white'>PlayCount : Not Available</h4> : <h4 className='text-xl font-semibold text-white'>PlayCount : {albumData.playCount}</h4> }
         </div>
         : <h1>Loading</h1>
         }

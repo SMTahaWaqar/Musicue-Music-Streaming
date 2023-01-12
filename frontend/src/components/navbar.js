@@ -59,7 +59,7 @@ const Navbar = () => {
                             value={search}
                             onChange={(e)=>setSearch(e.target.value)}
                         />
-                        <Link to="search" state={search} className="px-4 text-white bg-purple-600 rounded-full flex justify-center">
+                        <Link to="/search" state={search} className="px-4 text-white bg-purple-600 rounded-full flex justify-center">
                         <button className="px-4 text-white bg-purple-600 rounded-full ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
