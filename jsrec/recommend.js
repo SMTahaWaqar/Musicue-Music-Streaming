@@ -25,11 +25,11 @@ class Song {
   }
 // query in the url to be replaced by variable based on search ---------------------------------------- 
 
-let q = "tukur tukur";
+let q = "dreamers";
 fetch("http://saavn.me/search/songs?query="+q) //---------------------
   .then(res => res.json())
   .then(
-    json => song = new Song(json['data']['results'][0])) // ek song k liye 0th index------------ list of songs k lye loop se
+    json => song = new Song(json['data']['results'][0])) // ek song k liye 0th index-----list of songs k lye loop se
     .then(
     song => (song.get_recommendations()))
 
