@@ -5,6 +5,7 @@ import cors from 'cors';
 import dotenv from "dotenv";
 import helmet from 'helmet';
 import authRoutes from './routes/auth.js'
+import userRoutes from './routes/user.js'
 // import { fileURLPath } from 'url';
 
 
@@ -37,5 +38,9 @@ mongoose.connect(process.env.MONGO_URL, {
 }).catch((error) => console.log(`${error} did not connect`))
 
 
+
 // ATHENTICATION ROUTES
 app.use("/auth", authRoutes);
+
+// USER SONGS
+app.use("/user", userRoutes);   

@@ -10,6 +10,7 @@ const Song = () => {
     console.log(location.state);
 
     const getAlbum = (song) => {
+        // https://saavn.me/songs?id=5WXAlMNt
         axios.get(`https://saavn.me/search/songs?query=${song}`)
         .then(res => {
             console.log(res.data.data.results)

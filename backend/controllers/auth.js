@@ -55,3 +55,24 @@ export const login = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 }
+
+
+// LIKE A SONG
+export const likeSong = async (req, res) => {
+    try{
+        const { songId,userId } = req.body;
+        let doc = await User.updateMany({_id:userId}, {$push:{"likedSongs":`${songId}`}});
+        doc = await User.findOne({_id:userId});
+        res.status(200).json({doc});
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+export const getLikedSongs = async (req,res) => {
+    try {
+        let user = await User.findOne()
+    } catch (error) {
+        
+    }    
+}
