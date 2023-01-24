@@ -61,7 +61,7 @@ export const login = async (req, res) => {
 export const likeSong = async (req, res) => {
     try{
         const { songId,userId } = req.body;
-        let doc = await User.updateMany({_id:userId}, {$push:{"likedSongs":`${songId}`}});
+        let doc = await User.updateMany({_id:userId}, {$push:{"likedSongs": songId}});
         doc = await User.findOne({_id:userId});
         res.status(200).json({doc});
     } catch (error) {
@@ -69,10 +69,36 @@ export const likeSong = async (req, res) => {
     }
 }
 
-export const getLikedSongs = async (req,res) => {
-    try {
-        let user = await User.findOne()
+export const getLikedSongs = async (req, res) => {
+    try{
+        const { userId } = req.body;
+        let doc = await User.findOne({_id:userId});
+        doc = await User.findOne({_id:userId});
+        res.status(200).json(doc.likedSongs);
     } catch (error) {
-        
-    }    
+        res.status(500).json({ error: error.message });
+    }
+}
+
+export const customPlaylist = async (req, res) => {
+    try{
+        const { songId,userId } = req.body;
+        let doc = await User.updateMany({_id:userId}, {$push:{"customPlaylist":`${songId}`}});
+        doc = await User.findOne({_id:userId});
+        res.status(200).json({doc});
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+
+export const getCustomPlaylist = async (req, res) => {
+    try{
+        const { userId } = req.body;
+        let doc = await User.findOne({_id:userId});
+        doc = await User.findOne({_id:userId});
+        res.status(200).json(doc.customPlaylist);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 }

@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 import { FcMusic } from 'react-icons/fc'
 import {  AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
-import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
-
-    // const navigate = useNavigate();
 
     const [search,setSearch] = useState("");
 
@@ -30,6 +27,16 @@ const Navbar = () => {
     ]
 
     const [open, setOpen] = useState(false)
+
+    const data = localStorage.getItem('user');
+    const user = JSON.parse(data).user;
+  
+
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        localStorage.removeItem("loggedIn");
+        window.location.reload();
+    }
 
   return (
     <div className='shadow-md w-full sticky top-0 left-0 z-10'>
@@ -88,8 +95,8 @@ const Navbar = () => {
                     ))
                 }
 
-                <button className='bg-black text-white font-[Poppins] py-2 px-6 rounded md:ml-8 hover:bg-[#EA0C5C] duration-500 hover:scale-110'>
-                    Profile
+                <button className='bg-black text-white font-[Poppins] py-2 px-6 rounded md:ml-8 hover:bg-[#EA0C5C] duration-500 hover:scale-110' onClick={handleLogout}>
+                    {user.username}
                 </button>
             </ul>
         </div>
