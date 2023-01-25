@@ -10,6 +10,8 @@ const LikedSongs = () => {
 
     const [playSong, setPlaySong] = useState();
 
+    const [likedSong, setLikedSong] = useState();
+
 
     const [songData, setSongData] = useState([]);
 
@@ -51,7 +53,19 @@ const LikedSongs = () => {
             })
             .catch(err => console.error(err))
             }
-    }, [currentSong])
+
+        if (likedSong) {
+            const songId = likedSong
+            const userId = user._id;
+            const values = {songId, userId}  
+            console.log(values);
+            axios.post('http://localhost:3001/user/likesong', values)
+            .then(response => console.log(response))
+            .catch(err => console.log(err))
+            
+            setLikedSong(false);
+              }
+    }, [currentSong, likedSong])
 
 
   return (
@@ -82,7 +96,7 @@ const LikedSongs = () => {
                 </div>
             </div>
 
-            {songData ?
+            {songData.length>0 ?
                 <div className='flex flex-wrap p-6 items-centerz justify-center md:grid grid-cols-4 gap-4 items-stretch'>
                     {songData.map((song) => (
                     <div class="flex justify-center m-4 w-[80%] h-full z-[1]">
@@ -97,14 +111,14 @@ const LikedSongs = () => {
                         </p>
                         <div className='flex flex-col'>
                           <button type="button" className="inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110" onClick={() => setCurrentSong(song.id)}>Play</button>
-                          <button type="button" className="px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110 flex items-center justify-center"><BsFillHeartFill /></button>
+                          <button type="button" className="px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110 flex items-center justify-center" onClick={() => setLikedSong(song.id)}><BsFillHeartFill /></button>
                         </div>
                         </div>
                     </div>
                     </div>
                     ))}
                 </div>
-                : <div>Loading</div>
+                : <div className='h-[40vh] text-center text-white text-4xl'>Empty</div>
             }
 
         </div>

@@ -88,21 +88,21 @@ const Login = (props) => {
     // style={{backgroundImage: "linear-gradient(115deg, #9f7aea, #fee2fe", padding: "40px 0px"}}
 
   return (
-    <div className='min-h-screen flex justify-center items-center bg-[#395B64]' >
+    <div className='min-h-screen flex justify-center items-center bg-black' >
         <div className='container mx-auto'>
-            <div className='w-8/12 bg-[#227C70] rounded-xl mx-auto shadow-lg overflow- flex flex-col lg:flex-row'>
+            <div className='w-8/12 bg-gray-700 rounded-xl mx-auto shadow-lg overflow- flex flex-col lg:flex-row'>
                 {/* Image */}
                 <div className='w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center' style={{backgroundImage: "url('https://img.freepik.com/free-vector/musical-notes-frame-with-text-space_1017-32857.jpg?w=826&t=st=1673467941~exp=1673468541~hmac=7348b70b9982ef237a2292a45dd0240a0ce330389336b38d61be16778e203eeb')"}}>
-                    <h1 className='text-white text-center font-bold text-4xl mb-3'>Welcome To Musicue</h1>
-                    <div>
-                        <p className='text-white font-bold text-2xl text-center'>Musique gives you access to a world of free music, curated playlists, artists you love. <br /> Discover new music, top songs or listen to your favorite artists and albums.</p>
+                    <h1 className='text-white bg-black opacity-80 text-center font-bold text-4xl mb-3 rounded-md'>Welcome To Musicue</h1>
+                    <div className='bg-black opacity-80 rounded-md'>
+                        <p className='text-[#EA0C5C] text-opacity-100 font-extrabold text-2xl text-center'>Musique gives you access to a world of free music, curated playlists, artists you love. <br /> Discover new music, top songs or listen to your favorite artists and albums.</p>
                     </div>
                 </div>
                 {/* Form */}
                 {!isLogin ?
                     <div className='w-full lg:w-1/2 py-16 px-12'>
-                        <h2 className='text-3xl mb-4 text-center lg:text-left'>Register</h2>
-                        <p className='mb-4 text-center lg:text-left'>Create an Account. It Only takes a minute!</p>
+                        <h2 className='text-3xl text-white mb-4 text-center lg:text-left'>Register</h2>
+                        <p className='mb-4 text-center text-white lg:text-left'>Create an Account. It Only takes a minute!</p>
                         <form onSubmit={formik.handleSubmit}>
                             <div className='lg:grid lg:grid-cols-2 lg:gap-5 flex flex-col w-full'>
 
@@ -187,16 +187,16 @@ const Login = (props) => {
                             
                             </div>
                             <div className='mt-5'>
-                                <button type='submit' className='w-full bg-green-500 py-3 text-center font-bold text-xl text-white hover:bg-green-700'>SignUp</button>
+                                <button type='submit' className="w-full inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">SignUp</button>
                             </div>
                         </form>
-                        <p onClick={() => setIsLogin(true)} className="font-semibold hover:font-bold hover:cursor-pointer underline mt-2">Already have an account? Sign in here</p>
+                        <p onClick={() => setIsLogin(true)} className="font-semibold hover:font-bold hover:cursor-pointer underline mt-2 text-white">Already have an account? Sign in here</p>
                     </div>
                 : 
                     // Login
                     <div className='w-full lg:w-1/2 py-16 px-12'>
-                        <h2 className='text-3xl mb-4 text-center lg:text-left'>Login</h2>
-                        <p className='mb-4 text-center lg:text-left'>Sign in here to indulge in a whole new world!</p>
+                        <h2 className='text-3xl mb-4 text-center lg:text-left text-white'>Login</h2>
+                        <p className='mb-4 text-center lg:text-left text-white'>Sign in here to indulge in a whole new world!</p>
                         <form onSubmit={formik.handleSubmit}>
                             <div className='mt-5'>
 
@@ -233,10 +233,10 @@ const Login = (props) => {
                             
                             </div>
                             <div className='mt-5'>
-                                <button type='submit' className='w-full bg-green-500 py-3 text-center font-bold text-xl text-white hover:bg-green-700'>Login</button>
+                                <button type='submit' className=" inline-block w-full px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">Login</button>
                             </div>
                         </form>
-                        <p onClick={() => setIsLogin(false)} className="font-semibold hover:font-bold hover:cursor-pointer underline mt-2">Don't have an account? Create one here!</p>
+                        <p onClick={() => setIsLogin(false)} className="font-semibold hover:font-bold hover:cursor-pointer underline mt-2 text-white">Don't have an account? Create one here!</p>
                     </div>
                     }
             </div>

@@ -9,6 +9,8 @@ const Search = (props) => {
 
   const [likedSong, setLikedSong] = useState();
 
+  const [customPlaylist, setCustomPlaylist] = useState();
+
   const location = useLocation();
 
   const [searchData, setSearchData] = useState();
@@ -43,9 +45,21 @@ const Search = (props) => {
 
       setLikedSong(false);
     }
+
+    if (customPlaylist) {
+      const songId = customPlaylist
+      const userId = user._id;
+      const values = {songId, userId}  
+      console.log(values);
+      axios.post('http://localhost:3001/user/addtoplaylist', values)
+      .then(response => console.log(response))
+      .catch(err => console.log(err))
+      setCustomPlaylist(false);
+    }
+
     // console.log(currentSong);
     // props.playSong(currentSong);
-  }, [])
+  }, [likedSong, customPlaylist])
   
   return (
     <div className='h-full bg-black'>
@@ -61,19 +75,29 @@ const Search = (props) => {
             {searchData.topQuery.results.map((result) => (
               <div className="flex justify-center m-4 w-full h-full z-[1]">
               <div className="rounded-lg shadow-lg bg-gray-700 max-w-sm">
-                <Link to={result.type === "song" ? "/song" : "/album"} state={result.id} data-mdb-ripple="true" data-mdb-ripple-color="light">
-                  <img className="rounded-t-lg" src={result.image[2].link} alt="Song Cover"/>
-                </Link>
+                {result.type === "artist" ? 
+                <Link to="/artist" state={result.id} data-mdb-ripple="true" data-mdb-ripple-color="light"><img className="rounded-t-lg" src={result.image[2].link} alt="Song Cover"/></Link> : <Link to={result.type === "song" ? "/song" : "/album"} state={result.id} data-mdb-ripple="true" data-mdb-ripple-color="light">
+                <img className="rounded-t-lg" src={result.image[2].link} alt="Song Cover"/>
+              </Link>}
+                
                 <div className="p-6">
                   <h5 className="text-white text-xl font-medium mb-2">{result.title}</h5>
                   <p className="text-white text-base mb-4">
                     {result.type}
                   </p>
+                {result.type === 'artist' ? <div className="hidden"></div> : <div className="hidden"></div>}
+                {result.type === 'song' ?
                   <div className='flex justify-between flex-col'>
-                    <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">Play</button>
-                    <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">Add to Playlist</button>
-                    <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110 flex items-center justify-center" onClick={() => setLikedSong(result.id)}><BsFillHeartFill /></button>
-                  </div>
+                    <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110" onClick={() => setCustomPlaylist(result.id)}>Add to Playlist</button>
+                    <button type="button" className="px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110 flex items-center justify-center" onClick={() => setLikedSong(result.id)}><BsFillHeartFill /></button>
+                  </div> : <div className='hidden'></div> }
+                {result.type === 'album' ? 
+                  <div className='flex justify-between flex-col'>
+                  <Link to="/album" state={result.id} className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">
+                    Play
+                  </Link>
+                </div> : <div className='hidden'></div>
+                }
                 </div>
               </div>
             </div>
@@ -97,9 +121,8 @@ const Search = (props) => {
                     {result.type}
                   </p>
                   <div className='flex justify-between flex-col'>
-                    <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">Play</button>
-                    <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">Add to Playlist</button>
-                    <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110 flex items-center justify-center"><BsFillHeartFill /></button>
+                    <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110" onClick={() => setCustomPlaylist(result.id)}>Add to Playlist</button>
+                    <button type="button" className="px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110 flex items-center justify-center" onClick={() => setLikedSong(result.id)}><BsFillHeartFill /></button>
                   </div>
                 </div>
               </div>
@@ -125,9 +148,9 @@ const Search = (props) => {
                     {result.type}
                   </p>
                   <div className='flex justify-between flex-col'>
-                    <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">Play</button>
-                    <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">Add to Playlist</button>
-                    <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110 flex items-center justify-center"><BsFillHeartFill /></button>
+                    <Link to="/album" state={result.id} className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">
+                      Play
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -136,36 +159,6 @@ const Search = (props) => {
           </div>
           : <div>Loading</div>
           }
-
-
-          <h4 className="text-xl md:text-lg text-indigo-700 mt-10">Artists</h4>
-          {searchData ?
-          <div className='flex flex-wrap items-centerz justify-center md:grid grid-cols-4 gap-4 items-stretch'>
-            {searchData.artists.results.map((result) => (
-              <div className="flex justify-center m-4 w-full h-full z-[1]">
-              <div className="rounded-lg shadow-lg bg-gray-700 max-w-sm">
-                <Link to={result.type === "song" ? "/song" : "/album"} state={result.id} data-mdb-ripple="true" data-mdb-ripple-color="light">
-                  <img className="rounded-t-lg" src={result.image[2].link} alt="Song Cover"/>
-                </Link>
-                <div className="p-6">
-                  <h5 className="text-white text-xl font-medium mb-2">{result.title}</h5>
-                  <p className="text-white text-base mb-4">
-                    {result.type}
-                  </p>
-                  <div className='flex justify-between flex-col'>
-                    <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">Play</button>
-                    <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">Add to Playlist</button>
-                    <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110 flex items-center justify-center"><BsFillHeartFill /></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            ))}
-          </div>
-          : <div>Loading</div>
-          }
-
-
         </div>
       </div>
     </div>

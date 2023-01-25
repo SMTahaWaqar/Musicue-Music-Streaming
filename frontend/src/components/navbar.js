@@ -28,10 +28,6 @@ const Navbar = () => {
 
     const [open, setOpen] = useState(false)
 
-    const data = localStorage.getItem('user');
-    const user = JSON.parse(data).user;
-  
-
     const handleLogout = () => {
         localStorage.removeItem("user");
         localStorage.removeItem("loggedIn");
@@ -41,6 +37,7 @@ const Navbar = () => {
   return (
     <div className='shadow-md w-full sticky top-0 left-0 z-10'>
         <div className='md:flex items-center justify-between bg-white py-4 md:px-10 px-7'>
+            <Link to="/">
             <div className='font=bold text-2xl cursor-pointer flex items-center font-[Poppins] text-gray-800'>
                 <span className='text-3xl text-indigo-600 mr-1 pt-2'>
                     <FcMusic />
@@ -55,6 +52,7 @@ const Navbar = () => {
                 }
                 
             </div>
+            </Link>
             <ul className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all ease-in duration-500 ${open ? 'top-20' : 'top-[-490px]'}`}>
                 
                 <div className="flex items-center">
@@ -96,7 +94,7 @@ const Navbar = () => {
                 }
 
                 <button className='bg-black text-white font-[Poppins] py-2 px-6 rounded md:ml-8 hover:bg-[#EA0C5C] duration-500 hover:scale-110' onClick={handleLogout}>
-                    {user.username}
+                    Logout
                 </button>
             </ul>
         </div>

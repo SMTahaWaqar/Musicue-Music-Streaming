@@ -23,7 +23,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    axios.get('https://saavn.me/modules?language=english')
+    axios.get('https://saavn.me/modules?language=hindi')
     .then(res => {
         console.log(res.data.data.trending.songs[0].name)
         setHomData(res.data.data.trending);
@@ -66,13 +66,14 @@ const Home = () => {
       setCustomPlaylist(false);
     }
 
-  }, [likedSong, currentSong])
+  }, [likedSong, currentSong, customPlaylist])
   
 
   return (
     <div className='h-full bg-black'>
 
 
+        <h2 className='pt-8 text-center text-2xl md:text-4xl text-white font-semibold'>Hi! Welcome Back {user.username}</h2>
       
         {/* Player */}
         {playSong ?
@@ -107,7 +108,7 @@ const Home = () => {
                   <img className="rounded-t-lg" src={song.image[2].link} alt="Song Cover"/>
                 </Link>
                 <div className="p-6">
-                  <h5 className="text-white text-xl font-medium mb-2 truncate ...">{song.name}</h5>
+                  <h5 className="text-white text-xl font-medium mb-2">{song.name}</h5>
                   <p className="text-white text-base mb-4">
                     {song.primaryArtists[0].name}
                   </p>

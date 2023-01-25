@@ -8,8 +8,13 @@ const LikedSongs = () => {
 
     const [playSong, setPlaySong] = useState();
 
+    const [customPlaylist, setCustomPlaylist] = useState();
     
     const [songData, setSongData] = useState([]);
+
+    const data = localStorage.getItem('user');
+    const user = JSON.parse(data).user;
+
 
     const getSongData = (songId) => {
         axios.get(`https://saavn.me/songs?id=${songId}`)
@@ -50,7 +55,19 @@ const LikedSongs = () => {
         })
         .catch(err => console.error(err))
         }
-}, [currentSong])
+
+    if (customPlaylist) {
+        const songId = customPlaylist
+        const userId = user._id;
+        const values = {songId, userId}  
+        console.log(values);
+        axios.post('http://localhost:3001/user/addtoplaylist', values)
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
+        setCustomPlaylist(false);
+          }
+      
+}, [currentSong, customPlaylist])
     
   
 
@@ -98,14 +115,14 @@ const LikedSongs = () => {
                         </p>
                         <div className='flex flex-col'>
                             <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110" onClick={() => setCurrentSong(song.id)}>Play</button>
-                            <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">Add to Playlist</button>
+                            <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110" onClick={() => setCustomPlaylist(song.id)}>Add to Playlist</button>
                         </div>
                         </div>
                     </div>
                     </div>
                     ))}
                 </div>
-                : <div>Loading</div>
+                : <div className='h-[40vh] text-center text-white text-4xl'>No Liked Songs</div>
             }
 
         </div>

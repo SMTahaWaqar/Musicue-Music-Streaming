@@ -3,13 +3,23 @@ import React, { useEffect, useState } from 'react'
 import { BsFillHeartFill } from 'react-icons/bs';
 import { Link, useLocation } from 'react-router-dom';
 
-const Album = (props) => {
+const Album = () => {
 
     const location = useLocation();
 
+    const [currentSong, setCurrentSong] = useState();
+
+    const [playSong, setPlaySong] = useState();
+
+
     const [albumData, setAlbumData] = useState();
 
-    console.log(location.state);
+    const [likedSong, setLikedSong] = useState();
+
+    const [customPlaylist, setCustomPlaylist] = useState();
+
+    const data = localStorage.getItem('user');
+    const user = JSON.parse(data).user;  
 
     const getAlbum = (album) => {
         console.log(album);
@@ -21,13 +31,69 @@ const Album = (props) => {
         .catch(err => console.log(err))
     }
 
+    const handleClear = () => {
+        window.location.reload()
+      }
+
     useEffect(() => {
       getAlbum(location.state);
-    }, [])
+
+      if (currentSong) {
+        axios.get(`https://saavn.me/songs?id=${currentSong}`)
+        .then(res => {
+          console.log(res.data.data[0].downloadUrl[4].link)
+          setPlaySong(res.data.data[0].downloadUrl[4].link)
+        })
+        .catch(err => console.error(err))
+        }
+
+      if (likedSong) {
+        const songId = likedSong
+        const userId = user._id;
+        const values = {songId, userId}  
+        console.log(values);
+        axios.post('http://localhost:3001/user/likesong', values)
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
+  
+        setLikedSong(false);
+      }
+
+      if (customPlaylist) {
+        const songId = customPlaylist
+        const userId = user._id;
+        const values = {songId, userId}  
+        console.log(values);
+        axios.post('http://localhost:3001/user/addtoplaylist', values)
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
+        setCustomPlaylist(false);
+      }
+
+    }, [likedSong, customPlaylist, currentSong])
     
  
   return (
     <div className='w-full h-[full] p-6 flex flex-col justify-center items-center md:justify-start md:float-left bg-black'>
+
+        {/* Player */}
+        {playSong ?
+        <div className='flex flex-col justify-center items-center'>
+            <div className="flex justify-center items-center pb-8 bg-black transition ease-in duration-700">
+            <video id="player" controls>
+                <source src={playSong} type="video/mp4" />
+                <source src="video/sintel-short.webm" type="video/webm" />
+            </video>
+            </div>
+            <div>
+                <button className='inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110' onClick={handleClear}>clear</button>
+            </div>
+        </div>
+        : <div></div>
+        }
+
+
+
         {albumData ?
         <>
         <div className='flex flex-col justify-center items-center md:justify-start md:float-left m-4'>
@@ -63,9 +129,9 @@ const Album = (props) => {
                 {song.primaryArtists[0].name}
                 </p>
                 <div className='flex justify-between flex-col'>
-                <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">Play</button>
-                <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">Add to Playlist</button>
-                <button type="button" className="px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110 flex items-center justify-center"><BsFillHeartFill/></button>
+                <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110" onClick={() => setCurrentSong(song.id)}>Play</button>
+                <button type="button" className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110" onClick={() => setCustomPlaylist(song.id)}>Add to Playlist</button>
+                <button type="button" className="px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110 flex items-center justify-center" onClick={() => setLikedSong(song.id)}><BsFillHeartFill/></button>
                 </div>
             </div>
             </div>

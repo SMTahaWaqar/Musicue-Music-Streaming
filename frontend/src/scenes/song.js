@@ -24,9 +24,6 @@ const Song = () => {
     //     .catch(err => console.log(err))
     // }
 
-    const handleClear = () => {
-        window.location.reload()
-    }
     
 
     useEffect(() => {
@@ -61,9 +58,6 @@ const Song = () => {
                 <source src={playSong} type="video/mp4" />
                 <source src="video/sintel-short.webm" type="video/webm" />
             </video>
-            </div>
-            <div>
-                <button className='inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110' onClick={handleClear}>clear</button>
             </div>
         </div>
         : <div></div>
