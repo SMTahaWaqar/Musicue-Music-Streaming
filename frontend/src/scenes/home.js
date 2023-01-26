@@ -26,7 +26,7 @@ const Home = () => {
     axios.get('https://saavn.me/modules?language=hindi')
     .then(res => {
         console.log(res.data.data.trending.songs[0].name)
-        setHomData(res.data.data.trending);
+        setHomData(res.data.data);
         console.log(homeData.songs);
       }).catch(err => console.log(err))
 
@@ -95,13 +95,44 @@ const Home = () => {
         <div className='container flex flex-col px-5 py-24 mx-auto'>
           <div className='text-center mb-12'>
             <h5 className='text-base md:text-lg text-[#EA0C5C] mb-1'>Trending For the day</h5>
-            <h1 className='text-4xl md:text-6xl text-white font-semibold'>Top Charts</h1>
+            <h1 className='text-xl md:text-6xl text-white font-semibold'>Top Charts</h1>
           </div>
 
-          <h4 className="text-xl md:text-lg text-[#EA0C5C] mb-1">Trending Songs</h4>
+        
+          <h4 className="text-xl md:text-4xl text-[#EA0C5C] font-semibold mt-20">Recommened For You</h4>
+            {homeData ?
+            <div className='flex flex-wrap items-centerz justify-center md:grid grid-cols-4 gap-4 items-stretch'>
+              {console.log(homeData.albums[0].name)}
+              {homeData.albums.map((album) => (
+                <div className="flex justify-center m-4 w-full h-full z-[1]">
+                <div className="rounded-lg shadow-lg bg-gray-700 max-w-sm">
+                  <Link to="/album" state={album.id} data-mdb-ripple="true" data-mdb-ripple-color="light">
+                    <img className="rounded-t-lg" src={album.image[2].link} alt="Song Cover"/>
+                  </Link>
+                  <div className="p-6">
+                    <h5 className="text-white text-xl font-medium mb-2 ">{album.name}</h5>
+                    {/* <p className="text-white text-base mb-4">
+                      {album.artists[0].name}
+                    </p> */}
+                    <div className='flex justify-between flex-col'>
+                      <Link to="/album" state={album.id} className=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#EA0C5C] hover:shadow-lg focus:bg-[#EA0C5C] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#EA0C5C] active:shadow-lg transition duration-150 ease-in-out my-2 hover:scale-110">
+                        Play
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              ))}
+            </div>
+          : <div>Loading</div>
+          }
+
+
+
+          <h4 className="text-xl mt-10 md:text-lg text-[#EA0C5C] mb-1">Trending Songs</h4>
           {homeData ?
           <div className='flex flex-wrap justify-center md:grid grid-cols-4 gap-4 items-stretch'>
-            {homeData.songs.map((song) => (
+            {homeData.trending.songs.map((song) => (
               <div className="flex justify-center m-4 w-full h-full z-[1]">
               <div className="rounded-lg shadow-lg bg-gray-700 max-w-sm">
                 <Link to="/song" state={song.id} data-mdb-ripple="true" data-mdb-ripple-color="light">
@@ -128,7 +159,7 @@ const Home = () => {
           <h4 className="text-xl md:text-lg text-[#EA0C5C] mt-20">Trending Albums</h4>
             {homeData ?
             <div className='flex flex-wrap items-centerz justify-center md:grid grid-cols-4 gap-4 items-stretch'>
-              {homeData.albums.map((album) => (
+              {homeData.trending.albums.map((album) => (
                 <div className="flex justify-center m-4 w-full h-full z-[1]">
                 <div className="rounded-lg shadow-lg bg-gray-700 max-w-sm">
                   <Link to="/album" state={album.id} data-mdb-ripple="true" data-mdb-ripple-color="light">
